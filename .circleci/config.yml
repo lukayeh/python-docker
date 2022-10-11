@@ -55,8 +55,11 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
               login="$(aws ecr get-login)"
               ${login}
-              docker tag app "${ECR_ENDPOINT}:${CIRCLE_SHA1}" 
-              docker tag app "${ECR_ENDPOINT}:latest"
+              # Push the untagged image (will become the ":latest")
+              docker push "${ECR_ENDPOINT}"
+              # Tag the image with your build_number
+              docker tag app "${ECR_ENDPOINT}:${CIRCLE_SHA1}"
+              # Push the tagged image 
               docker push "${ECR_ENDPOINT}:${CIRCLE_SHA1}"
             fi
 
