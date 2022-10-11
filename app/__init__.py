@@ -2,8 +2,11 @@ import os
 from flask import Flask
 import socket
 import sys
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
+csrf = CSRFProtect()
+csrf.init_app(app) # Compliant
 
 # a simple pay that says hello
 @app.route("/")
