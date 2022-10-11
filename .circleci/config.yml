@@ -22,10 +22,10 @@ jobs:
             virtualenv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            mkdir test-results
-            python -m pytest --junitxml=test-results/junit.xml
+            mkdir ../test-results
+            python -m pytest --junitxml=../test-results/junit.xml
       - store_test_results:
-          path: test-results
+          path: ../test-results
       - restore_cache:
           keys:
             - v1-{{ .Branch }}
