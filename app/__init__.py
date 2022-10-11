@@ -12,9 +12,11 @@ def hello():
         "<h3>Hello {name}!</h3>"
         "<b>Hostname:</b> {hostname}<br/>"
         "<b>Python:</b> {version}<br/>"
+        "<b>User:</b> {user}<br/>"
     )
     return html.format(
         name=os.getenv("NAME", "world"),
         hostname=socket.gethostname(),
         version=sys.version,
+        user=os.getenv("USER", "placeholder"),
     )
