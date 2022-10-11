@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+    helloworldapp:
+        build:
+          context: .
+        ports:
+            - '4040:80'
+        #image: helloworldapp
