@@ -8,6 +8,16 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: run tests
+          command: |
+            virtualenv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+            mkdir test-results
+            python -m pytest --junitxml=test-results/junit.xml
+      - store_test_results:
+          path: test-results
+      - run:
           name: Install dependencies
           command: |
             apk add --no-cache \
@@ -38,10 +48,6 @@ jobs:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
             - /caches/app.tar
-      # - run:
-      #     name: Run tests
-      #     command: |
-      #       docker-compose -f ./docker-compose.test.yml up
       - deploy:
           name: Push application Docker image
           command: |
