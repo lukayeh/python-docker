@@ -17,7 +17,7 @@ jobs:
               awscli==1.11.76 \
               virtualenv
       - run:
-          name: run tests
+          name: Run Tests
           command: |
             virtualenv venv
             . venv/bin/activate
@@ -55,7 +55,8 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
               login="$(aws ecr get-login)"
               ${login}
-              docker tag app "${ECR_ENDPOINT}:${CIRCLE_SHA1}" "${ECR_ENDPOINT}:latest"
+              docker tag app "${ECR_ENDPOINT}:${CIRCLE_SHA1}" 
+              docker tag app "${ECR_ENDPOINT}:latest"
               docker push "${ECR_ENDPOINT}:${CIRCLE_SHA1}"
             fi
 
