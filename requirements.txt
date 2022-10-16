@@ -2,3 +2,4 @@ Flask
 Redis
 pytest
 Flask-WTF
+gunicorn

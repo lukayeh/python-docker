@@ -1,3 +1,6 @@
 terraform/*tfstate*
 terraform/.terraform.lock.hcl
 terraform/.terraform
+venv
+__pycache__/
+app/__pycache__/
